@@ -1,0 +1,72 @@
+h1{
+    font-family: Trebuchet MS, sans-serif;
+    font-weight: 1000;
+    font-size: 60px;
+    color: crimson;
+    text-align: center;
+    margin-top: 3%;
+}
+
+body{
+    font-family: Trebuchet MS, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    background-image: linear-gradient(lightgoldenrodyellow, lightcoral, lightslategray);
+}
+
+label{
+    font-family: Optima, sans-serif;
+    font-size: 15px;
+    color: grey;
+}
+
+input{
+    font-family: Optima, sans-serif;
+    font-size: 15px;
+    color: lightcoral;
+    background-color: lightgoldenrodyellow;
+    border-style: hidden;
+    border-radius: 4px;
+    padding: 7px 7px;
+
+}
+
+
+.getdata{
+    font-family: Trebuchet MS, sans-serif;
+    font-size: 20px;
+    color: grey;
+    width: 70%;
+    margin: 0 auto;
+}
+
+button{
+    font-family: Trebuchet MS, sans-serif;
+    font-size: 15px;
+    color: lightgoldenrodyellow;
+    background-color: lightcoral;
+    padding: 7px 7px;
+    border-style: hidden;
+    border-radius: 4px;
+}
+
+
+table, th, td {
+    font-family: Trebuchet MS, sans-serif;
+    font-size: 20px;
+    color: crimson;
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 10px 20px;
+}
+
+.alert{
+    font-family: Trebuchet MS, sans-serif;
+    font-size: 15px;
+    color: crimson;
+    height: 20px;
+    margin: 0 2% 2% 2%;
+}
+
