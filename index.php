@@ -19,11 +19,11 @@ try {
     die();
 }
 
-function checkCodeExists($conn, string $code): bool {
+function checkIfCodeUnique($conn, string $code): bool {
     $status = '';
     foreach ($conn->iterateAssociativeIndexed(
         'SELECT id, name, surname, code FROM person_register.persons') as $data) {
-        if ($code === $data['code']) {
+        if ($code !== $data['code']) {
             $status = true;
         }else{
             $status = false;
@@ -49,7 +49,7 @@ if(isset($_POST['submit'])) {
         $errorMsg = 'Unable to register this person. Surname is required.';
     } elseif (empty($code)){
         $errorMsg = 'Unable to register this person. Personal ID code is required.';
-    } elseif(checkCodeExists($conn, $code)) {
+    } elseif(checkIfCodeUnique($conn, $code)) {
         $errorMsg = 'Unable to register. Person with such Personal ID code already exists in the Database.';
     } else{
         $registry = [
