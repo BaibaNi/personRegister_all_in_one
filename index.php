@@ -22,7 +22,7 @@ try {
 function checkCodeExists($conn, string $code): bool {
     $status = '';
     foreach ($conn->iterateAssociativeIndexed(
-        'SELECT id, name, surname, code FROM person_register.persons') as $id => $data) {
+        'SELECT id, name, surname, code FROM person_register.persons') as $data) {
         if ($code === $data['code']) {
             $status = true;
         }else{
