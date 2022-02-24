@@ -20,14 +20,13 @@ try {
 }
 
 function checkIfCodeUnique($conn, string $code): bool {
-    $status = '';
-    foreach ($conn->iterateAssociativeIndexed(
-        'SELECT id, name, surname, code FROM person_register.persons') as $data) {
-        if ($code !== $data['code']) {
-            $status = true;
-        }else{
-            $status = false;
-        }
+    $status = false;
+    $sql = 'SELECT * FROM person_register.persons where code = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(1, $code);
+    $dbCode = $stmt->executeQuery();
+    if($dbCode->rowCount() === 0) {
+        $status = true;
     }
     return $status;
 }
@@ -104,17 +103,21 @@ if(isset($_POST['submit'])) {
         </tr>
         <?php
         $i=1;
-        foreach($conn->iterateAssociativeIndexed(
+        try {
+            foreach ($conn->iterateAssociativeIndexed(
                 'SELECT id, name, surname, code FROM person_register.persons') as $id => $data): ?>
-            <tr>
-                <td><?php echo $i; ?></td>
-                <td><?php echo $data['name']; ?></td>
-                <td><?php echo $data['surname']; ?></td>
-                <td><?php echo $data['code']; ?></td>
-                <td><?php echo $id; ?></td>
-            </tr>
-        <?php $i++;
-        endforeach; ?>
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $data['name']; ?></td>
+                    <td><?php echo $data['surname']; ?></td>
+                    <td><?php echo $data['code']; ?></td>
+                    <td><?php echo $id; ?></td>
+                </tr>
+            <?php $i++;
+            endforeach;
+        } catch (\Doctrine\DBAL\Exception $e) {
+            echo $e->getMessage();
+        } ?>
     </table>
 </section>
 
